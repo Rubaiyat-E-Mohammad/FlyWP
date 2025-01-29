@@ -18,14 +18,16 @@ export class ServerProvidersPage extends BasePage {
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderDoApiToken);
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForTimeout(500);
-    const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
-    if (await warnMsg.isVisible()) {
-      await this.validateAndFillStrings('//input[@type="password"]', serverProviderDoApiToken);
-      await this.validateAndClick('//button[text()="Add Credential"]');
+    try {
+      await this.page.waitForSelector(`//div[text()='${serverProviderDoName}']`, { timeout: 20000 });
+    } catch (error) {
+      const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
+      if (await warnMsg.isVisible()) {
+        await this.validateAndFillStrings('//input[@type="password"]', serverProviderDoApiToken);
+        await this.validateAndClick('//button[text()="Add Credential"]');
+        await this.assertionValidate(`//div[text()='${serverProviderDoName}']`);
+      }
     }
-    await this.assertionValidate(`//div[text()='${serverProviderDoName}']`);
-
     return serverProviderDoName;
   };
 
@@ -68,20 +70,23 @@ export class ServerProvidersPage extends BasePage {
     await this.page.goto(Urls.baseUrl + `/teams/${Users.currentTeamId}/server-providers`, { waitUntil: 'networkidle' });
 
     await this.validateAndClick('//button[text()="Add Provider"]');
-    await this.validateAndClick("//h4[normalize-space(text())='Vultr']"); 
+    await this.validateAndClick("//h4[normalize-space(text())='Vultr']");
 
 
-    await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderVultrName); 
+    await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderVultrName);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken);
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForTimeout(500);
-    const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
-    if (await warnMsg.isVisible()) {
-      await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken);
-      await this.validateAndClick('//button[text()="Add Credential"]');
+    try {
+      await this.page.waitForSelector(`//div[text()='${serverProviderVultrName}']`, { timeout: 20000 });
+    } catch (error) {
+      const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
+      if (await warnMsg.isVisible()) {
+        await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken);
+        await this.validateAndClick('//button[text()="Add Credential"]');
+        await this.assertionValidate(`//div[text()='${serverProviderVultrName}']`);
+      }
     }
-    await this.assertionValidate(`//div[text()='${serverProviderVultrName}']`);
 
     return serverProviderVultrName;
   };
@@ -115,11 +120,11 @@ export class ServerProvidersPage extends BasePage {
 
     await this.validateAndClick('(//a[contains(text(), "Settings")])[1]');
     await this.validateAndClick('//span[text()="Server Providers"]');
-    await this.assertionValidate(`//div[text()="${serverProviderVultrName}"]`); 
+    await this.assertionValidate(`//div[text()="${serverProviderVultrName}"]`);
 
-    await this.validateAndClick(`//div[text()='${serverProviderVultrName}']//..//..//..//td[contains(@class,'px-6 py-4')]//button`); 
-    await this.validateAndClick('//div[contains(@class,"px-5 py-4")]//button[1]'); 
-    await this.page.waitForLoadState('domcontentloaded') 
+    await this.validateAndClick(`//div[text()='${serverProviderVultrName}']//..//..//..//td[contains(@class,'px-6 py-4')]//button`);
+    await this.validateAndClick('//div[contains(@class,"px-5 py-4")]//button[1]');
+    await this.page.waitForLoadState('domcontentloaded')
     await expect(this.page.locator(`//div[text()='${serverProviderVultrName}']`)).not.toBeVisible();
   };
 
@@ -130,7 +135,7 @@ export class ServerProvidersPage extends BasePage {
     await this.page.goto(Urls.baseUrl + `/teams/${Users.currentTeamId}/server-providers`, { waitUntil: 'networkidle' });
 
     await this.validateAndClick('//button[text()="Add Provider"]');
-    await this.validateAndClick('//h4[contains(text(), "AWS")]'); 
+    await this.validateAndClick('//h4[contains(text(), "AWS")]');
 
 
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderAwsName);
@@ -171,11 +176,11 @@ export class ServerProvidersPage extends BasePage {
     await this.validateAndClick('(//a[contains(text(), "Settings")])[1]');
     await this.validateAndClick('//span[text()="Server Providers"]');
 
-    await this.assertionValidate(`//div[text()="${serverProviderAwsName}"]`); 
+    await this.assertionValidate(`//div[text()="${serverProviderAwsName}"]`);
 
-    await this.validateAndClick(`//div[text()='${serverProviderAwsName}']//..//..//..//td[contains(@class,'px-6 py-4')]//button`); 
-    await this.validateAndClick('//div[contains(@class,"px-5 py-4")]//button[1]'); 
-    await this.page.waitForLoadState('domcontentloaded') 
+    await this.validateAndClick(`//div[text()='${serverProviderAwsName}']//..//..//..//td[contains(@class,'px-6 py-4')]//button`);
+    await this.validateAndClick('//div[contains(@class,"px-5 py-4")]//button[1]');
+    await this.page.waitForLoadState('domcontentloaded')
     await expect(this.page.locator(`//div[text()='${serverProviderAwsName}']`)).not.toBeVisible();
 
   };
@@ -188,11 +193,11 @@ export class ServerProvidersPage extends BasePage {
     await this.page.goto(Urls.baseUrl + `/teams/${Users.currentTeamId}/server-providers`, { waitUntil: 'networkidle' });
 
     await this.validateAndClick('//button[text()="Add Provider"]');
-    await this.validateAndClick("//h4[normalize-space(text())='Vultr']"); 
+    await this.validateAndClick("//h4[normalize-space(text())='Vultr']");
 
 
-    await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderAkamaiName); 
-    await this.validateAndFillStrings('//input[@type="password"]', serverProviderAkamaiApiToken); 
+    await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderAkamaiName);
+    await this.validateAndFillStrings('//input[@type="password"]', serverProviderAkamaiApiToken);
 
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
@@ -216,7 +221,7 @@ export class ServerProvidersPage extends BasePage {
 
     await teamButtonLocator.click();
 
-    
+
     await this.validateAndClick('(//a[contains(text(), "Settings")])[1]');
     await this.validateAndClick('//span[text()="Server Providers"]');
 
@@ -239,11 +244,11 @@ export class ServerProvidersPage extends BasePage {
     await this.validateAndClick('(//a[contains(text(), "Settings")])[1]');
     await this.validateAndClick('//span[text()="Server Providers"]');
 
-    await this.assertionValidate(`//div[text()="${serverProviderAkamaiName}"]`); 
+    await this.assertionValidate(`//div[text()="${serverProviderAkamaiName}"]`);
 
-    await this.validateAndClick(`//div[text()='${serverProviderAkamaiName}']//..//..//..//td[contains(@class,'px-6 py-4')]//button`); 
-    await this.validateAndClick('//div[contains(@class,"px-5 py-4")]//button[1]'); 
-    await this.page.waitForLoadState('domcontentloaded') 
+    await this.validateAndClick(`//div[text()='${serverProviderAkamaiName}']//..//..//..//td[contains(@class,'px-6 py-4')]//button`);
+    await this.validateAndClick('//div[contains(@class,"px-5 py-4")]//button[1]');
+    await this.page.waitForLoadState('domcontentloaded')
     await expect(this.page.locator(`//div[text()='${serverProviderAkamaiName}']`)).not.toBeVisible();
 
   };
@@ -252,20 +257,23 @@ export class ServerProvidersPage extends BasePage {
   async addServerProviderHetzner(serverProviderHetznerName: string, serverProviderHetznerApiToken: string) {
     await this.page.goto(Urls.baseUrl + `/teams/${Users.currentTeamId}/server-providers`, { waitUntil: 'networkidle' });
 
-    await this.validateAndClick('//button[text()="Add Provider"]'); 
-    await this.validateAndClick('//h4[normalize-space(text())="Hetzner"]'); 
+    await this.validateAndClick('//button[text()="Add Provider"]');
+    await this.validateAndClick('//h4[normalize-space(text())="Hetzner"]');
 
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderHetznerName);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderHetznerApiToken);
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForTimeout(500);
-    const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
-    if (await warnMsg.isVisible()) {
-      await this.validateAndFillStrings('//input[@type="password"]', serverProviderHetznerApiToken);
-      await this.validateAndClick('//button[text()="Add Credential"]');
+    try {
+      await this.page.waitForSelector(`//div[text()='${serverProviderHetznerName}']`, { timeout: 20000 });
+    } catch (error) {
+      const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
+      if (await warnMsg.isVisible()) {
+        await this.validateAndFillStrings('//input[@type="password"]', serverProviderHetznerApiToken);
+        await this.validateAndClick('//button[text()="Add Credential"]');
+        await this.assertionValidate(`//div[normalize-space(text())="${serverProviderHetznerName}"]`);
+      }
     }
-    await this.assertionValidate(`//div[normalize-space(text())="${serverProviderHetznerName}"]`);
 
     return serverProviderHetznerName;
   }
