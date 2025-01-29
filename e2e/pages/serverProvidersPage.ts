@@ -16,6 +16,11 @@ export class ServerProvidersPage extends BasePage {
     await this.validateAndClick("//h4[normalize-space(text())='DigitalOcean']");
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderDoName);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderDoApiToken);
+    await this.page.waitForTimeout(500);
+    const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
+    if (await warnMsg.isVisible()) {
+      await this.validateAndFillStrings('//input[@type="password"]', serverProviderDoApiToken);
+    }
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
     await this.assertionValidate(`//div[text()='${serverProviderDoName}']`);
@@ -66,8 +71,12 @@ export class ServerProvidersPage extends BasePage {
 
 
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderVultrName); 
-    await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken); 
-
+    await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken);
+    await this.page.waitForTimeout(500);
+    const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
+    if (await warnMsg.isVisible()) {
+      await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken);
+    }
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
     await this.assertionValidate(`//div[text()='${serverProviderVultrName}']`);
@@ -246,6 +255,11 @@ export class ServerProvidersPage extends BasePage {
 
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderHetznerName);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderHetznerApiToken);
+    await this.page.waitForTimeout(500);
+    const warnMsg = this.page.locator('//p[normalize-space(text())="The key field is required."]');
+    if (await warnMsg.isVisible()) {
+      await this.validateAndFillStrings('//input[@type="password"]', serverProviderHetznerApiToken);
+    }
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
     await this.assertionValidate(`//div[normalize-space(text())="${serverProviderHetznerName}"]`);
