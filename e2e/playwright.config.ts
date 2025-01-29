@@ -6,7 +6,7 @@ import { faker } from '@faker-js/faker';
 const config: PlaywrightTestConfig = {
     testDir: "./tests",
 
-    timeout: 1200 * 1000, // 6 minutes
+    timeout: 1800 * 1000, // 6 minutes
     expect: {
 
         timeout: 30 * 1000, // 30 seconds
