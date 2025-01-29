@@ -86,7 +86,6 @@ const config: PlaywrightTestConfig = {
             name: 'postShard',
             testMatch: [
                 'tests/registration.spec.ts',
-                // 'tests/serverProviders.spec.ts',
                 'tests/cleanup.spec.ts',
             ]
         },
