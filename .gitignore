@@ -26,8 +26,6 @@ test-data.json
 .vscode
 .DS_Store
 .idea
-package-lock.json
-package.json
 yarn.lock
 changed-file.php
 state.json

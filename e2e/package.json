@@ -1,0 +1,36 @@
+{
+  "name": "flywp-automation",
+  "version": "1.0.0",
+  "description": "e2e Automation coverage for FlyWP Project",
+  "main": "index.js",
+  "scripts": {
+    "report": "npx playwright show-report",
+    "all": "npx playwright test --workers=auto",
+    "all:headed": "npx playwright test --headed",
+    "test:preShard": "npx playwright test --project=preShard",
+    "test:shard1": "npm run test:preShard && npx playwright test --project=shard1 && npm run test:postShard",
+    "test:shard2": "npm run test:preShard && npx playwright test --project=shard2 && npm run test:postShard",
+    "test:shard3": "npm run test:preShard && npx playwright test --project=shard3 && npm run test:postShard",
+    "test:shard4": "npm run test:preShard && npx playwright test --project=shard4 && npm run test:postShard",
+    "test:postShard": "npx playwright test --project=postShard",
+    "test:coverage": "npx playwright test --project=coverage --reporter=null",
+    "merge-reports": "npx playwright merge-reports --reporter html ./blob-report",
+    "generate-report": "npm run merge-reports && npx playwright show-report ./playwright-report",
+    "test:sharded": "npm run test:preShard && npx playwright test --project=shard1 && npx playwright test --project=shard2 && npx playwright test --project=shard3 && npx playwright test --project=shard4 && npm run test:postShard"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "@playwright/test": "^1.49",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "js-yaml": "^4.1.0"
+  }
+}
