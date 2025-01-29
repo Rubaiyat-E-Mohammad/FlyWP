@@ -1,0 +1,346 @@
+# Basic User Login
+- page: 'login.spec.ts'
+  features: 
+    "[L001] userLogin": true
+    "[L002] userLogout": true
+
+
+
+# New User Registration
+- page: 'registration.spec.ts'
+  features:   
+    "[R001] userRegistration": false
+    "[R002] userRegistrationVerification": false
+    "[R003] newUserLoginValidate": false
+    "[R004] newUserLogoutValidate": false
+
+
+
+# Server Providers creation, validation and deletion
+- page: 'serverProviders.spec.ts'
+  features: 
+    # ServerProviders : Digital-Ocean
+    "[SP001] addServerProvider: Digital Ocean": true
+    "[SP002] validateServerProvider: Digital Ocean": true
+    "[SP003] deletServerProvider: Digital Ocean": true
+    # ServerProviders : Vultr
+    "[SP004] addServerProvider: Vultr": true
+    "[SP005] validateServerProvider: Vultr": true
+    "[SP006] deletServerProvider: Vultr": true
+    # ServerProviders : AWS    
+    "[SP007] addServerProvider: AWS": false
+    "[SP008] validateServerProvider: AWS": false
+    "[SP009] deletServerProvider: AWS": false 
+    # ServerProviders : Akamai
+    "[SP010] addServerProvider: Akamai": false
+    "[SP011] validateServerProvider: Akamai": false
+    "[SP012] deletServerProvider: Akamai": false
+    # ServerProviders : Hetzner
+    "[SP013] addServerProvider: Hetzner": true
+    "[SP014] validateServerProvider: Hetzner": true
+    "[SP015] deletServerProvider: Hetzner": true
+
+
+
+# Servers creation, validation and deletion
+- page: 'serversDOPartnered.spec.ts'
+  features: 
+    # Servers : Digital-Ocean Partnered
+    "[SC001] createServer: Digital Ocean (@Partnered)": true
+    "[SC002] validateServer: Digital Ocean (@Partnered)": true
+    "[SC003] updateServer: Digital Ocean (@Partnered)": true
+    "[SC004] validateUpdatedServer: Digital Ocean (@Partnered)": true
+    "[SC005] deleteServer: Digital Ocean (@Partnered)": true
+- page: 'serversDOCustom.spec.ts'
+  features: 
+    # Servers : Digital-Ocean Custom
+    "[SC006] addServerProvider: Digital Ocean": true
+    "[SC007] createServer: Digital Ocean (@Custom)": true
+    "[SC008] validateServer: Digital Ocean (@Custom)": true
+    "[SC009] updateServer: Digital Ocean (@Custom)": true
+    "[SC010] validateUpdatedServer: Digital Ocean (@Custom)": true
+    "[SC011] deleteServer: Digital Ocean (@Custom)": true
+    "[SC012] validateServerProvider: Digital Ocean": true
+    "[SC013] deletServerProvider: Digital Ocean": true
+- page: 'serversVultr.spec.ts'
+  features: 
+    # Servers : Vultr
+    "[SC020] createServer: Vultr": true
+    "[SC021] validateServer: Vultr": true
+    "[SC022] deleteServer: Vultr": true
+- page: 'serversHetzner.spec.ts'
+  features: 
+    # Servers : Hetzner
+    "[SC014] createServer: Hetzner": true
+    "[SC015] validateServer: Hetzner": true
+    "[SS045] createPermaSite1": true
+    "[SS046] validatePermaSite1": true
+    "[SS047] createPermaSite2": true
+    "[SS048] validatePermaSite2": true
+- page: 'serversHetzner2.spec.ts'
+  features: 
+    # Servers : Hetzner
+    "[SC016] createServer: Hetzner2": true
+    "[SC017] validateServer: Hetzner2": true
+    "[SS049] createPermaSite3": true
+    "[SS050] validatePermaSite3": true
+    "[SS051] createPermaSite4": true
+    "[SS052] validatePermaSite4": true
+- page: 'cleanup.spec.ts'
+  features: 
+    # Servers : Cleanup
+    "[SC018] deleteServer: Hetzner": true
+    "[SC019] deleteServer: Hetzner2": true
+  
+
+
+# Sites creation, validation and deletion
+- page: 'sitesFreeDomain.spec.ts'
+  features:
+    # Type : Free 
+    # Sites : Nginx
+    # php version : v7.4
+    "[SS001] createSiteFreeDomainNginx - php version: v7.4": true
+    "[SS002] validateSiteFreeDomainNginx - php version: v7.4": true
+    "[SS003] deleteSiteFreeDomainNginx - php version: v7.4": true
+    # php version : v8.0
+    "[SS004] createSiteFreeDomainNginx - php version: v8.0": true
+    "[SS005] validateSiteFreeDomainNginx - php version: v8.0": true
+    "[SS006] deleteSiteFreeDomainNginx - php version: v8.0": true
+    # php version : v8.1
+    "[SS007] createSiteFreeDomainNginx - php version: v8.1": true
+    "[SS008] validateSiteFreeDomainNginx - php version: v8.1": true
+    "[SS009] deleteSiteFreeDomainNginx - php version: v8.1": true
+    # php version : v8.2
+    "[SS010] createSiteFreeDomainNginx - php version: v8.2": true
+    "[SS011] validateSiteFreeDomainNginx - php version: v8.2": true
+    "[SS012] deleteSiteFreeDomainNginx - php version: v8.2": true
+    # Type : Free
+    # Sites : OpenLitespeed(Ols)
+    # php version : v7.4
+    "[SS013] createSiteFreeDomainOls - php version: v7.4": true
+    "[SS014] validateSiteFreeDomainOls - php version: v7.4": true
+    "[SS015] deleteSiteFreeDomainOls - php version: v7.4": true
+    # php version : v8.0 (Ols does not have v8.0 - Negative case)
+    "[SS016] createSiteFreeDomainOls - php version: v8.0": true
+    # php version : v8.1
+    "[SS017] createSiteFreeDomainOls - php version: v8.1": true
+    "[SS018] validateSiteFreeDomainOls - php version: v8.1": true
+    "[SS019] deleteSiteFreeDomainOls - php version: v8.1": true
+    # php version : v8.2
+    "[SS020] createSiteFreeDomainOls - php version: v8.2": true
+    "[SS021] validateSiteFreeDomainOls - php version: v8.2": true
+    "[SS022] deleteSiteFreeDomainOls - php version: v8.2": true
+- page: 'sitesCustomDomain.spec.ts'
+  features:
+    # Type : Custom Domain
+    # Sites : Nginx
+    # php version : v7.4
+    "[SS023] createSiteCustomDomainNginx - php version: v7.4": true
+    "[SS024] validateSiteCustomDomainNginx - php version: v7.4": true
+    "[SS025] deleteSiteCustomDomainNginx - php version: v7.4": true
+    # php version : v8.0
+    "[SS026] createSiteCustomDomainNginx - php version: v8.0": true
+    "[SS027] validateSiteCustomDomainNginx - php version: v8.0": true
+    "[SS028] deleteSiteCustomDomainNginx - php version: v8.0": true
+    # php version : v8.1
+    "[SS029] createSiteCustomDomainNginx - php version: v8.1": true
+    "[SS030] validateSiteCustomDomainNginx - php version: v8.1": true
+    "[SS031] deleteSiteCustomDomainNginx - php version: v8.1": true
+    # php version : v8.2
+    "[SS032] createSiteCustomDomainNginx - php version: v8.2": true
+    "[SS033] validateSiteCustomDomainNginx - php version: v8.2": true
+    "[SS034] deleteSiteCustomDomainNginx - php version: v8.2": true
+    # Type : Custom Domain
+    # Sites : OpenLitespeed(Ols)
+    # php version : v7.4
+    "[SS035] createSiteCustomDomainOls - php version: v7.4": true
+    "[SS036] validateSiteCustomDomainOls - php version: v7.4": true
+    "[SS037] deleteSiteCustomDomainOls - php version: v7.4": true
+    # php version : v8.0 (Ols does not have v8.0 - Negative case)
+    "[SS038] createSiteCustomDomainOls - php version: v8.0": true
+    # php version : v8.1
+    "[SS039] createSiteCustomDomainOls - php version: v8.1": true
+    "[SS040] validateSiteCustomDomainOls - php version: v8.1": true
+    "[SS041] deleteSiteCustomDomainOls - php version: v8.1": true
+    # php version : v8.2
+    "[SS042] createSiteCustomDomainOls - php version: v8.2": true
+    "[SS043] validateSiteCustomDomainOls - php version: v8.2": true
+    "[SS044] deleteSiteCustomDomainOls - php version: v8.2": true
+   
+
+# Backup Providers addition and validation and deletion
+# Backup creation, restore, validation and deletion
+- page: 'backupProviders.spec.ts'
+  features:
+    # Backup
+    # BackupProviders : Custom S3 (iDrive)
+    "[BKP001] addBackupProvider - CustomS3": true
+    "[BKP002] validateBackupProvider - CustomS3": true
+    "[BKP003] connectBackupProvider - Perma-Site: CustomS3": true
+    "[BKP004] createManualBackup - Perma-Site: CustomS3": true
+    "[BKP005] validateManualBackup - Perma-Site: CustomS3": true
+    "[BKP006] deleteManualBackup - Perma-Site: CustomS3": true
+    "[BKP007] deleteBackupProvider: CustomS3": true
+    # BackupProviders : Cloudflare R2
+    "[BKP008] addBackupProvider: CloudflareR2": true
+    "[BKP009] validateBackupProvider: CloudflareR2": true
+    "[BKP010] connectBackupProvider - Perma-Site: CloudflareR2": true
+    "[BKP011] createManualBackup - Perma-Site: CloudflareR2": true
+    "[BKP012] validateManualBackup - Perma-Site: CloudflareR2": true
+    "[BKP013] deleteManualBackup - Perma-Site: CloudflareR2": true
+    "[BKP014] deleteBackupProvider: CloudflareR2": true
+    # Restore Backup
+    # Backup Providers : Custom S3 (iDrive)
+    # Site : Ols-Site
+    "[BKR001] addBackupProvider: CustomS3": false
+    "[BKR002] validateBackupProvider: CustomS3": false
+    "[BKR003] connectBackupProvider - Perma-Site: CustomS3": false
+    "[BKR004] createManualBackup - Perma-Site: CustomS3": false
+    "[BKR005] validateManualBackup - Perma-Site: CustomS3": false
+    "[BKR006] restoreBackup - Perma-Site: CustomS3": false
+    "[BKR007] validateRestoreBackup - Perma-Site: CustomS3": false
+    "[BKR008] deleteManualBackup - Perma-Site:CustomS3": false
+    "[BKR009] deleteBackupProvider - CustomS3": false
+
+
+# Email Setup, validation, sending test mail and deletion
+- page: 'emailSetup.spec.ts'
+  features:
+    # Email Setup 
+    # Type : Custom SMTP
+    # Site : Nginx
+    "[ES001] connectEmail - Perma-Site: Nginx > CustomEmail": true
+    "[ES002] validateConnectEmail - Perma-Site: Nginx > CustomEmail": true
+    "[ES003] sendTestEmail - Perma-Site: Nginx > CustomEmail": true
+    "[ES004] updateEmail - Perma-Site: Nginx > CustomEmail": true
+    "[ES005] removeEmail - Perma-Site: Nginx > CustomEmail": true
+    # Type : Custom SMTP
+    # Site : OpenLitespeed(Ols)
+    "[ES006] connectEmail - Perma-Site: Ols > CustomEmail": true
+    "[ES007] validateConnectEmail - Perma-Site: Ols > CustomEmail": true
+    "[ES008] sendTestEmail - Perma-Site: Ols > CustomEmail": true
+    "[ES009] updateEmail - Perma-Site: Ols > CustomEmail": true
+    "[ES010] removeEmail - Perma-Site: Ols > CustomEmail": true
+
+
+
+- page: 'cloneSite.spec.ts'
+  features:
+    # Clone Site
+    # Site : Nginx to Nginx
+    # php version : v7.4
+    "[CNS001] cloneSite - Perma-Site: Nginx to Nginx": true
+    "[CNS002] validateClonedSite - Perma-Site: Nginx to Nginx": true
+    "[CNS003] visitClonedSite - Perma-Site: Nginx to Nginx": true
+    "[CNS004] deleteClonedSite - Perma-Site: Nginx to Nginx": true
+    # Site : Nginx to OpenLitespeed(Ols)
+    # php version : v7.4
+    "[CNS005] cloneSite - Perma-Site: Nginx to Ols": true
+    "[CNS006] validateClonedSite - Perma-Site: Nginx to Ols": true
+    "[CNS007] visitClonedSite - Perma-Site: Nginx to Ols": true
+    "[CNS008] deleteClonedSite - Perma-Site: Nginx to Ols": true
+    # Site : OpenLitespeed(Ols) to OpenLitespeed(Ols)
+    # php version : v7.4
+    "[CNS009] cloneSite - Perma-Site: Ols to Ols": true
+    "[CNS010] validateClonedSite - Perma-Site: Ols to Ols": true
+    "[CNS011] visitClonedSite - Perma-Site: Ols to Ols": true
+    "[CNS012] deleteClonedSite - Perma-Site: Ols to Ols": true
+    # Site : OpenLitespeed(Ols) to Nginx
+    # php version : v7.4
+    "[CNS013] cloneSite - Perma-Site: Ols to Nginx": true
+    "[CNS014] validatedClonedSite - Perma-Site: Ols to Nginx": true
+    "[CNS015] visitClonedSite > Perma-Site: Ols to Nginx": true  
+    "[CNS016] deleteClonedSite - Perma-Site: Ols to Nginx": true
+
+
+- page: 'filemanager.spec.ts'
+  features:
+    # File Manager
+    # Site : Nginx
+    "[FM001] createNewFolder - Perma-Site: Nginx": true
+    "[FM002] validateCreatedNewFolder - Perma-Site: Nginx": true
+    "[FM003] createNewFile - Perma-Site: Nginx": true
+    "[FM004] validateCreatedNewFile - Perma-Site: Nginx": true
+    "[FM005] openCreatedNewFile - Perma-Site: Nginx ": true
+    "[FM006] renameCreatedNewFile - Perma-Site: Nginx": true
+    "[FM007] validateRenamedFile - Perma-Site: Nginx": true
+    "[FM008] downloadRenamedFile - Perma-Site: Nginx": true
+    "[FM009] moveCreatedNewFileToCreatedNewFolder - Perma-Site: Nginx": true
+    "[FM010] zipCreatedFolder - Perma-Site: Nginx": true
+    "[FM011] renameZippedFolder - Perma-Site: Nginx": true
+    "[FM012] renameCreatedFolder - Perma-Site: Nginx": true
+    "[FM013] unZipFolder - Perma-Site: Nginx": true
+    "[FM014] validateUnZipFolder - Perma-Site: Nginx": true
+    "[FM015] deleteNewZippedFolder - Perma-Site: Nginx": true
+    "[FM016] deleteNewCreatedFile - Perma-Site: Nginx": true
+    "[FM017] deleteNewCreatedFolder - Perma-Site: Nginx": true
+    "[FM018] uploadNewFile - Perma-Site: Nginx": true
+    "[FM019] editUploadedNewFile - Perma-Site: Nginx": true
+    "[FM020] deletedUploadedNewFile - Perma-Site: Nginx": true
+    "[FM021] deleteUnzippedFolder - Perma-Site: Nginx": true
+    # Site : OpenLitespeed(Ols) 
+    "[FM022] createNewFolder - Perma-Site: Ols": true
+    "[FM023] validateCreatedNewFolder - Perma-Site: Ols": true
+    "[FM024] createNewFile - Perma-Site: Ols": true
+    "[FM025] validateCreatedNewFile - Perma-Site: Ols": true
+    "[FM026] openCreatedNewFile - Perma-Site: Ols": true
+    "[FM027] renameCreatedNewFile - Perma-Site: Ols": true
+    "[FM028] validateRenamedFile - Perma-Site: Ols": true
+    "[FM029] downloadRenamedFile - Perma-Site: Ols": true
+    "[FM030] moveCreatedNewFileToCreatedNewFolder - Perma-Site: Ols": true
+    "[FM031] zipCreatedFolder - Perma-Site: Ols": true
+    "[FM032] renameZippedFolder - Perma-Site: Ols": true
+    "[FM033] renameCreatedFolder - Perma-Site: Ols": true
+    "[FM034] unZipFolder - Perma-Site: Ols": true
+    "[FM035] validateUnZipFolder - Perma-Site: Ols": true
+    "[FM036] deleteNewZippedFolder - Perma-Site: Ols": true
+    "[FM037] deleteNewCreatedFile - Perma-Site: Ols": true
+    "[FM038] deleteNewCreatedFolder - Perma-Site: Ols": true
+    "[FM039] uploadNewFile - Perma-Site: Ols": true
+    "[FM040] editUploadedNewFile - Perma-Site: Ols": true
+    "[FM041] deletedUploadedNewFile - Perma-Site: Ols": true
+    "[FM042] deleteUnzippedFolder - Perma-Site: Ols": true
+
+# Clone Site to another server
+- page: 'cloneSiteToDifferentServer.spec.ts'
+  features:
+    # Clone Site to different server
+    # Site : Nginx to Nginx
+    # php version : v7.4
+    "[CNSDS001] cloneSiteToDifferentServer - Perma-Site: Nginx to Nginx": true
+    "[CNSDS002] validateClonedSiteToDifferentServer - Perma-Site: Nginx to Nginx": true
+    "[CNSDS003] visitClonedSiteToDifferentServer - Perma-Site: Nginx to Nginx": true
+    "[CNSDS004] deleteClonedSiteToDifferentServer - Perma-Site: Nginx to Nginx": true
+    # Site : Nginx to OpenLitespeed(Ols)
+    # php version : v7.4
+    "[CNSDS005] cloneSiteToDifferentServer - Perma-Site: Nginx to Ols": true
+    "[CNSDS006] validateClonedSiteToDifferentServer - Perma-Site: Nginx to Ols": true
+    "[CNSDS007] visitClonedSiteToDifferentServer - Perma-Site: Nginx to Ols": true
+    "[CNSDS008] deleteClonedSiteToDifferentServer - Perma-Site: Nginx to Ols": true
+    # Site : OpenLitespeed(Ols) to OpenLitespeed(Ols)
+    # php version : v7.4
+    "[CNSDS009] cloneSiteToDifferentServer - Perma-Site: Ols to Ols": true
+    "[CNSDS010] validateClonedSiteToDifferentServer - Perma-Site: Ols to Ols": true
+    "[CNSDS011] visitClonedSiteToDifferentServer - Perma-Site: Ols to Ols": true
+    "[CNSDS012] deleteClonedSiteToDifferentServer - Perma-Site: Ols to Ols": true
+    # Site : OpenLitespeed(Ols) to Nginx
+    # php version : v7.4
+    "[CNSDS013] cloneSiteToDifferentServer - Perma-Site: Ols to Nginx": true
+    "[CNSDS014] validateClonedSiteToDifferentServer - Perma-Site: Ols to Nginx": true
+    "[CNSDS015] visitClonedSiteToDifferentServer - Perma-Site: Ols to Nginx": true
+    "[CNSDS016] deleteClonedSiteToDifferentServer - Perma-Site: Ols to Nginx": true
+
+# Transfer site to another server
+- page: 'transferSite.spec.ts'
+  features:
+    #Nginx
+    "[TS001] Transfer Nginx Site": true
+    "[TS002] validate Transfered Nginx Site": true
+    "[TS003] visit Transfered Nginx Site": true
+    "[TS004] delete Transfered Nginx Site": true
+    #OLS
+    "[TS005] Transfer Ols Site": true
+    "[TS006] validate Transfered Ols Site": true
+    "[TS007] visit Transfered Ols Site": true
+    "[TS008] delete Transfered Ols Site": true

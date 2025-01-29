@@ -1,0 +1,36 @@
+# Directories
+e2e/node_modules/
+e2e/playwright-report/
+e2e/pw-coverage-report/
+e2e/test-results/
+e2e/blob-report/
+e2e/playwright/.cache/
+e2e/blob-report/
+e2e/blob-report-*/
+e2e/all-blob-reports/
+e2e/tests/test-data.json
+e2e/summary-report/
+node_modules/
+/playwright-report/
+/test-results/
+/playwright/.cache/
+/tests-examples/
+
+# Files
+e2e/.DS_Store
+e2e/.env
+e2e/state.json
+e2e/tests/state.json
+e2e/tests/README.md
+test-data.json
+.vscode
+.DS_Store
+.idea
+package-lock.json
+package.json
+yarn.lock
+changed-file.php
+state.json
+.editorconfig
+.eslintrc
+.env

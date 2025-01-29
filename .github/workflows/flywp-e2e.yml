@@ -1,0 +1,156 @@
+name: FlyWP Automation Tests
+
+on:
+  workflow_dispatch:
+#   schedule:
+#     - cron: "0 1 * * *"  # Run workflow at 8:00 AM UTC +6 every day
+#   push:
+#     branches: [main]
+
+env:
+  CI: true  # Set environment variable for CI
+  APP_URL: ${{ secrets.APP_URL }}
+  USER_EMAIL: ${{ secrets.USER_EMAIL }}
+  USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+  DO_TOKEN: ${{ secrets.DO_TOKEN }}
+  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  HETZNER_TOKEN: ${{ secrets.HETZNER_TOKEN }}
+  SMTP_EMAIL_USERNAME: ${{ secrets.SMTP_EMAIL_USERNAME }}
+  SMTP_EMAIL_PASSWORD: ${{ secrets.SMTP_EMAIL_PASSWORD }}
+  S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
+  S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+  S3_REGION: ${{ secrets.S3_REGION }}
+  S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}
+  S3_BUCKET: ${{ secrets.S3_BUCKET }}
+  PERMANENT_SERVER_NAME1: ${{ secrets.PERMANENT_SERVER_NAME1 }}
+  PERMANENT_NGINX_SITE_TITLE: ${{ secrets.PERMANENT_NGINX_SITE_TITLE }}
+  PERMANENT_OLS_SITE_TITLE: ${{ secrets.PERMANENT_OLS_SITE_TITLE }}
+  PERMANENT_SERVER_NAME2: ${{ secrets.PERMANENT_SERVER_NAME2 }}
+  E2E_TEST_RESULT: ./e2e/merged-summary.json
+  E2E_COVERAGE: ./e2e/merged-coverage.json
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    defaults:
+      run:
+        working-directory: e2e 
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: |
+            echo "PLAYWRIGHT_VERSION=$(npm ls @playwright/test --json | jq --raw-output '.dependencies["@playwright/test"].version')" >> "$GITHUB_ENV"
+
+      - name: Cache playwright binaries
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+            path: |
+                ~/.cache/ms-playwright
+            key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+            restore-keys: |
+                ${{ runner.os }}-playwright-
+
+      - name: Install Playwright browser binaries & OS dependencies
+        id: pw-install
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: |
+            npx playwright install chromium --with-deps
+
+      - name: Run Playwright tests
+        id: e2e-test
+        run: |
+          npm run test:sharded
+    
+      - name : move all blob reports to a directory
+        if: always()
+        run: |
+          mkdir -p all-blob-reports
+          find . -type f -name "report-*" -exec mv {} all-blob-reports/ \;
+
+      - name: Merge blob reports
+        if: always()
+        run: |
+          npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: 🧪 Run e2e coverage
+        if: always() && (steps.e2e-test.outcome == 'success' || steps.e2e-test.outcome == 'failure')
+        run: |
+          npm run test:coverage
+
+      - name: Generate merged summary report
+        if: always()
+        run: |
+          npx ts-node ./utils/mergeSummaryReport.ts
+
+      # - name: remove extra coverage result
+      #   if: always()
+      #   working-directory: e2e/pw-coverage-report
+      #   run: |
+      #     rm coverage-results.json
+    
+      - name: Generate merged coverage report
+        if: always()
+        run: |
+          npx ts-node ./utils/mergeCoverageSummary.ts
+
+      - name: Prepare test summary
+        id: prepare-test-summary
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+              const script = require("./e2e/utils/gitTestSummary.ts");
+              return await script({github, context, core})
+
+      - name: Archive Playwright report & Coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            e2e/all-blob-reports
+            e2e/playwright-report
+            e2e/pw-coverage-report
+            e2e/summary-report
+            e2e/merged-summary.json
+            e2e/merged-coverage.json
+          retention-days: 3
+
+      - name: Publish HTML report to GH Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: e2e/playwright-report
+
+      - name: Send Test Report on email
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.SMTP_EMAIL_USERNAME }}
+          password: ${{ secrets.SMTP_EMAIL_PASSWORD }}
+          subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+          body: |
+            ${{ github.job }} job in workflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}.
+            Test was conducted on FlyWP Staging. See the attached report for details.
+          to: tons2468@gmail.com, nurul.ratul@wedevs.com ,saif@wedevs.com,farazi@wedevs.com,
+          from: rubaiyat.mohammad@wedevs.com
+          attachments: ./e2e/playwright-report/index.html
