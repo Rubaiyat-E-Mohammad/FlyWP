@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 #   schedule:
 #     - cron: "0 1 * * *"  # Run workflow at 8:00 AM UTC +6 every day
-#   push:
-#     branches: [main]
+  push:
+    branches: [main]
 
 env:
   CI: true  # Set environment variable for CI
