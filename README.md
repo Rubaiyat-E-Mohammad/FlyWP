@@ -9,13 +9,13 @@
 
 * Follow instructions in the [NVM repository](https://github.com/nvm-sh/nvm) to install NVM.
 
-## Running tests:
+## Running tests
 
-#### Pre work for running the tests,
+#### Pre work for running the tests
 
 Clone this repository
 
-- `git clone https://github.com/Rat01047/flywp-automation.git`
+* `git clone https://github.com/Rat01047/flywp-automation.git`
 
 Run the followings in a terminal/command line window
 
@@ -23,7 +23,7 @@ Run the followings in a terminal/command line window
 cd e2e
 ```
 
-- `npm install` to install the required dependencies (@playwright/test, dotenv, @faker-js/faker)
+* `npm install` to install the required dependencies (@playwright/test, dotenv, @faker-js/faker)
 
 Make a .env file according to .env.example file
 
@@ -34,11 +34,13 @@ To run the tests suite, use the following command:
 ```bash
 npx playwright test
 ```
+
 ----------
 
-### Additional Scripts:
+### Additional Scripts
+
 <details><summary> ... </summary>
- 
+
 Here are some other useful commands to help you run and manage your tests effectively:
 
 ##### **Run All Tests**
@@ -100,12 +102,12 @@ Run pre-shard, all shards, and post-shard tests in sequence:
 ```
 npm run test:sharded
 ```
-</details>
 
+</details>
 
 ----
 
-### Generate and View Test Coverage:
+### Generate and View Test Coverage
 
 <details><summary> ... </summary>
 
@@ -130,10 +132,13 @@ View the most recent HTML report:
 ```
 npm run report
 ```
+
 </details>
 
 ----------
-### Notes:
+
+### Notes
+
 </details><details><summary> ... </summary>
 
 • Ensure all dependencies are installed before running these commands (npm install).
@@ -141,4 +146,3 @@ npm run report
 • Configure your test environment and projects in the Playwright configuration file (playwright.config.js).
 
 </details>
-
