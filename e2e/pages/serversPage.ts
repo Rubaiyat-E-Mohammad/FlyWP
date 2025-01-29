@@ -54,7 +54,7 @@ export class ServersPage extends BasePage {
       console.log("Cannot find locator");
     };
 
-    await this.validateAndClick('//table[@class="min-w-full divide-y divide-gray-300"]//tbody//tr[2]');
+    await this.validateAndClick('//table[@class="min-w-full divide-y divide-gray-300"]//tbody//tr[1]');
     await this.validateAndFillStrings('//input[@placeholder="production-server-1"]', serverName);
 
     await this.validateAndClick('//button[text()="Launch Server"]');
