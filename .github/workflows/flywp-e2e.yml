@@ -23,10 +23,6 @@ env:
   S3_REGION: ${{ secrets.S3_REGION }}
   S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}
   S3_BUCKET: ${{ secrets.S3_BUCKET }}
-  PERMANENT_SERVER_NAME1: ${{ secrets.PERMANENT_SERVER_NAME1 }}
-  PERMANENT_NGINX_SITE_TITLE: ${{ secrets.PERMANENT_NGINX_SITE_TITLE }}
-  PERMANENT_OLS_SITE_TITLE: ${{ secrets.PERMANENT_OLS_SITE_TITLE }}
-  PERMANENT_SERVER_NAME2: ${{ secrets.PERMANENT_SERVER_NAME2 }}
   E2E_TEST_RESULT: ./e2e/merged-summary.json
   E2E_COVERAGE: ./e2e/merged-coverage.json
 
@@ -62,7 +58,7 @@ jobs:
         with:
             path: |
                 ~/.cache/ms-playwright
-            key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+            key: ${{ runner.os }}-playwright-${{ secrets.PLAYWRIGHT_VERSION }}
             restore-keys: |
                 ${{ runner.os }}-playwright-
 
