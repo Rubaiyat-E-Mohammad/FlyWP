@@ -15,7 +15,9 @@ export class ServerProvidersPage extends BasePage {
     await this.validateAndClick('//button[text()="Add Provider"]');
     await this.validateAndClick("//h4[normalize-space(text())='DigitalOcean']");
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderDoName);
+    await this.page.waitForTimeout(2000);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderDoApiToken);
+    await this.page.waitForTimeout(2000);
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
     try {
@@ -74,7 +76,9 @@ export class ServerProvidersPage extends BasePage {
 
 
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderVultrName);
+    await this.page.waitForTimeout(2000);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken);
+    await this.page.waitForTimeout(5000);
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
     try {
@@ -261,7 +265,9 @@ export class ServerProvidersPage extends BasePage {
     await this.validateAndClick('//h4[normalize-space(text())="Hetzner"]');
 
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderHetznerName);
+    await this.page.waitForTimeout(2000);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderHetznerApiToken);
+    await this.page.waitForTimeout(2000);
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
     try {

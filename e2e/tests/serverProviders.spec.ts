@@ -111,7 +111,7 @@ test.describe("ServerProviders : Hetzner", () => {
 });
 
 // Vultr Server Provider tests
-test.describe.skip("ServerProviders : Vultr", () => {
+test.describe("ServerProviders : Vultr", () => {
   let serverProviderVultrName: string = ServerProvidersVultr.serverProviderVultrName;
   let serverProviderVultrApiToken: string = ServerProvidersVultr.serverProviderVultrApiToken;
 
