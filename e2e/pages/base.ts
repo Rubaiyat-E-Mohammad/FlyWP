@@ -15,7 +15,7 @@ export class BasePage {
 
     // Validate and Click
     async validateAndClick(locator: string) {
-        await this.page.locator(locator).waitFor();
+        // await this.page.locator(locator).waitFor();
         expect(this.page.locator(locator).isVisible).toBeTruthy();
         await this.page.locator(locator).click();
     };
@@ -92,9 +92,7 @@ export class BasePage {
 
 
     /**
-     * Extracts server ID from the redirect URL
-     * 
-     * @returns {Promise<number | undefined>} Server ID or undefined if not found
+     * @Extracts : Server ID from the redirect URL
      * 
      */
     async extractServerIdFromRedirect() {
@@ -114,9 +112,7 @@ export class BasePage {
 
 
     /**
-     * Extracts site ID from the redirect URL
-     * 
-     * @returns {Promise<number>} Site ID (0 if not found)
+     * @Extracts : Site ID from the redirect URL
      * 
      */
     async extractSiteIdFromRedirect() {

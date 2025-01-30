@@ -17,8 +17,8 @@ let page: Page;
 let serverName: string = permaServerSite.server2;
 let currentTeamId: string = Users.currentTeamId;
 
-let siteName: string | number = Sites.siteName;
-let siteId: string | number = "";
+let siteName: string = Sites.siteName;
+let siteId: string = "";
 let phpVersion7_4: string = Sites.phpVersion7_4;
 
 // BeforeAll hook to complete login

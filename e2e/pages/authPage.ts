@@ -87,23 +87,23 @@ export class AuthPage extends BasePage {
       this.page.goto(Urls.baseUrl + '/servers', { waitUntil: 'networkidle' }),
     ]);
     
-    // Get Team owner Name
     const teamOwnerName = Users.teamOwnerName;
-
-    // Modify the team owner name to create the locator text
     const teamLocatorText = 'FlyDevs';
-    // Use the locator with the modified text
-    const teamButtonLocator = this.page.locator(`//button[contains(text(),"${teamLocatorText}")]`);
-    // Click the team button (with the Modified Locator)
-    await teamButtonLocator.click();
+    
+    /**
+     * @extra : This is for the team owner name validation (ending with {user}'s Team)
+     */
+    // const teamButtonLocator = this.page.locator(`//button[contains(text(),"${teamLocatorText}")]`);
+    // await teamButtonLocator.click();
+    // const teamLocatorText = `${teamOwnerName.split(" ")[0]}'s Team`;
 
+    const teamButtonLocator = this.page.locator(`//button[contains(text(),"${teamLocatorText}")]`);
+    await teamButtonLocator.click();
     console.log(`Team Owner is: ${teamOwnerName}`);
     console.log(`Team Owner Button is: ${teamButtonLocator}`);
 
-    // Click Logout
-    // await this.validateAndClick('(//div[contains(@class,"rounded-md ring-1")])//button[text()="Log Out"]');
     await this.validateAndClickAny('//button[text()="Log Out"]');
-    // Validate logout
+
     const loginButton = await this.page.locator('//button[text()="Log in"]');
     expect(loginButton).toBeTruthy();
   }

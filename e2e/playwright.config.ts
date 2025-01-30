@@ -14,7 +14,7 @@ const config: PlaywrightTestConfig = {
     fullyParallel: false,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 0 : 0,
-    workers: process.env.CI ? 8 : 4, // Use 4 workers in CI, 4 locally
+    workers: process.env.CI ? 4 : 4, // Use 4 workers in CI, 4 locally
     reporter: process.env.CI
         ? [
             ["blob", { outputDir: `./blob-report-${faker.string.nanoid(5)}` }],
@@ -74,6 +74,7 @@ const config: PlaywrightTestConfig = {
                 'tests/transferSite.spec.ts',
                 'tests/emailSetup.spec.ts',
                 'tests/login.spec.ts',
+                'tests/sitesSettings.spec.ts',
             ]
         },
         {
