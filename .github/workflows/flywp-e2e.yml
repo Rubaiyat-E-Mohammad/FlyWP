@@ -71,8 +71,7 @@ jobs:
       - name: Run Playwright tests
         id: e2e-test
         run: |
-          npx playwright test serverProviders.spec.ts --workers 1
-          # npm run test:sharded
+          npm run test:sharded
     
       - name : move all blob reports to a directory
         if: always()
@@ -129,12 +128,12 @@ jobs:
             e2e/merged-coverage.json
           retention-days: 3
 
-      - name: Publish HTML report to GH Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: e2e/playwright-report
+      # - name: Publish HTML report to GH Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_branch: gh-pages
+      #     publish_dir: e2e/playwright-report
 
       - name: Send Test Report on email
         if: success()
