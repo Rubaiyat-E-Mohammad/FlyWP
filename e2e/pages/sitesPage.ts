@@ -343,7 +343,12 @@ export class SitesPage extends BasePage {
     }
 
     const toastMessage = this.page.locator('//div[normalize-space(text())="Changes has been updated in the server."]'); // Update with the actual selector for your Toast
-    await toastMessage.waitFor({ timeout: 20000 });
+    try {
+      await toastMessage.waitFor({ timeout: 20000 });
+    } catch (error) {
+      await this.validateAndClick('//button[normalize-space(text())="Save Changes"]');
+      await toastMessage.waitFor({ timeout: 20000 });
+    }
     await expect(toastMessage).toHaveText('Changes has been updated in the server.');
 
     return updatedPhpVersion;

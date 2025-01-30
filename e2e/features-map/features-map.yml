@@ -344,3 +344,23 @@
     "[TS006] validate Transfered Ols Site": true
     "[TS007] visit Transfered Ols Site": true
     "[TS008] delete Transfered Ols Site": true
+
+# Site Settings Scenarios
+- page: 'siteSettings.spec.ts'
+  features:
+    # Site Settings
+    # Site : Nginx
+    "[SSPS001] changePHPSettings: PHP version ": true
+    "[SSPS002] validateSite: PHP version": true
+    "[SSPS003] changePHPSettings: PHP Memory Limit": true
+    "[SSPS004] validateSite: PHP Memory Limit": true
+    "[SSPS005] changePHPSettings: Max Execution Time": true
+    "[SSPS006] validateSite: Max Execution Time": true
+    "[SSPS007] changePHPSettings: Max File Upload Limit": true
+    "[SSPS008] validateSite: Max File Upload Limit": true
+    "[SSPS009] changePHPSettings: Max File Upload Size": true
+    "[SSPS0010] validateSite: Max File Upload Size": true
+    "[SSPS0011] changePHPSettings: Max Input Time": true
+    "[SSPS0012] validateSite: Max Input Time": true
+    "[SSPS0011] changePHPSettings: Max Input Vars": true
+    "[SSPS0012] validateSite: Max Input Vars": true

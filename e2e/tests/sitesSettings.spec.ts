@@ -47,7 +47,7 @@ test.describe("Sites Settings -  NGINX", () => {
   let updatedMaxInputTime: string = "180";
   let updatedMaxInputVars: string = "1100";
 
-  test("[SSPS001] changePHPSettings: PHP version ", { tag: ['@Nginx_Site', '@PHP_Settings',] }, async () => {
+  test("[SSPS001] changePHPSettings: PHP version", { tag: ['@Nginx_Site', '@PHP_Settings',] }, async () => {
     const sitesPage = new SitesPage(page);
     updatedPhpVersion = await sitesPage.changeSitePhpVersion(siteId, updatedPhpVersion);
   });
