@@ -75,7 +75,6 @@ export class ServerProvidersPage extends BasePage {
 
     await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderVultrName);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken);
-    await this.page.waitForTimeout(10000);
     await this.validateAndClick('//button[text()="Add Credential"]');
     await this.page.waitForLoadState('domcontentloaded');
     try {

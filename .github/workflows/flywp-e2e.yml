@@ -2,8 +2,8 @@ name: FlyWP Automation Tests
 
 on:
   workflow_dispatch:
-#   schedule:
-#     - cron: "0 1 * * *"  # Run workflow at 8:00 AM UTC +6 every day
+  schedule:
+    - cron: "0 1 * * *"  # Run workflow at 8:00 AM UTC +6 every day
   push:
     branches: [main]
 
@@ -71,8 +71,7 @@ jobs:
       - name: Run Playwright tests
         id: e2e-test
         run: |
-          npx playwright test serverProviders.spec.ts --workers 1
-          # npm run test:sharded
+          npm run test:sharded
     
       - name : move all blob reports to a directory
         if: always()
