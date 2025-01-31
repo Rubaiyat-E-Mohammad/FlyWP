@@ -1,6 +1,7 @@
 import { config as dotenvConfig } from "dotenv";
 dotenvConfig(); // Load environment variables from .env file
 import { faker } from "@faker-js/faker";
+import * as fs from "fs";
 
 //ServerProviders data
 //Digital Ocean
@@ -85,22 +86,23 @@ let BackupProvidersCloudflareR2: {
   backupProviderCloudflareR2Bucket: "qa-bucket-la",
 };
 
+//Google Drive
+let BackupProvidersGoogleDrive: {
+  backupProviderGoogleDriveName: string;
+  backupProviderServiceAccountJson: string;
+  backupProviderGoogleDriveKeyFolderID: string;
+} = {
+  backupProviderGoogleDriveName: `custom-googleDrive-qa`,
+  backupProviderServiceAccountJson: fs.readFileSync('e2e/utils/google-drive-backup-provider.json', 'utf8'),
+  backupProviderGoogleDriveKeyFolderID: "1rBHL9zZhwY10BIdXDWI7JyCDhhtWA_07",
+};
+
 let permaServerSite: { 
   server1: string;
   server2:string;
   nginxSiteTitle: string;
   olsSiteTitle: string;
 } = {
-  // server1: process.env.PERMANENT_SERVER_NAME1 || 'QA-Automation1',
-  // server2: process.env.PERMANENT_SERVER_NAME2 || 'QA-Automation2',
-  // serverId1: process.env.PERMANENT_SERVER_ID1 || "697",
-  // serverId2: process.env.PERMANENT_SERVER_ID2 || "698",
-  // nginxSiteId: process.env.PERMANENT_NGINX_SITE_ID || "2841",
-  // olsSiteId: process.env.PERMANENT_OLS_SITE_ID || "2843",
-  // nginxSiteId2: process.env.PERMANENT_NGINX_SITE_ID2 || "3533",
-  // olsSiteId2: process.env.PERMANENT_OLS_SITE_ID2 || "3534",
-  // nginxSiteTitle: process.env.PERMANENT_NGINX_SITE_TITLE || "test-site-nginx",
-  // olsSiteTitle: process.env.PERMANENT_OLS_SITE_TITLE || "test-site-ols",
   server1: 'QA-Automation1',
   server2: 'QA-Automation2',
   nginxSiteTitle: 'test-site-nginx',
@@ -136,6 +138,7 @@ export {
   ServerProvidersHetzner,
   BackupProvidersCustomS3,
   BackupProvidersCloudflareR2,
+  BackupProvidersGoogleDrive,
   permaServerSite,
   emailCredentials,
 };

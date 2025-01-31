@@ -1,7 +1,7 @@
 import { Page, Dialog } from '@playwright/test';
 import { BasePage } from './base';
 import { Urls } from '../utils/testData';
-import { BackupProvidersCustomS3, BackupProvidersCloudflareR2 } from "../utils/secureData";
+import { BackupProvidersCustomS3, BackupProvidersCloudflareR2, BackupProvidersGoogleDrive } from "../utils/secureData";
 
 export class BackupProvidersPage extends BasePage {
   constructor(page: Page) {
@@ -136,7 +136,7 @@ export class BackupProvidersPage extends BasePage {
   };
 
 
-  /* -------------------- Custom S3 -------------------- */
+  /* -------------------- Cloudflare R2 -------------------- */
   async addBackupProviderCloudflareR2(currentTeamId: string) {
     await this.page.goto(Urls.baseUrl + `/teams/${currentTeamId}/backups`, { waitUntil: 'networkidle' });
 
@@ -174,6 +174,49 @@ export class BackupProvidersPage extends BasePage {
     await this.validateAndClick("//div[contains(@class,'px-5 py-4')]//button[1]");
   };
 
+/* -------------------- Google Drive -------------------- */
+async addBackupProviderGoogleDrive(currentTeamId: string) {
+  await this.page.goto(Urls.baseUrl + `/teams/${currentTeamId}/backups`, { waitUntil: 'networkidle' });
 
+  //Add New Provider
+  await this.validateAndClick("//button[normalize-space(text())='Add New Provider']");
+
+  //Custom S3 Provider
+  await this.validateAndClick("//h4[normalize-space(text())='Google Drive']");
+
+  //Insert Provider Name
+  await this.validateAndFillStrings("(//input[contains(@class,'block w-full')])[1]", BackupProvidersGoogleDrive.backupProviderGoogleDriveName);
+
+  //Insert Region Name
+  await this.validateAndFillStrings("//textarea[@placeholder='Paste your Google service account JSON file contents']", BackupProvidersGoogleDrive.backupProviderServiceAccountJson);
+
+  //Click Add Provider
+  await this.validateAndClick("//button[normalize-space(text())='Add Provider']");
+
+  return BackupProvidersGoogleDrive.backupProviderGoogleDriveName;
+
+
+};
+
+async connectBackupProviderGoogleDrive(backupProviderName: string, SiteId: string) {
+  await this.page.goto(Urls.baseUrl + `/site/${SiteId}/backups`, { waitUntil: 'networkidle' });
+  await this.page.waitForLoadState('domcontentloaded');
+  await this.validateAndClick("//button[normalize-space(text())='Backup Settings']");
+  await this.page.waitForLoadState('domcontentloaded');
+  await this.page.locator("(//select[contains(@class,'block w-full')])[1]").selectOption({ index: 0 });
+  await this.validateAndFillStrings("//input[@placeholder='1wLvZJYUfJVuH9zrA2B8S9FzIDtBmEnXf']", BackupProvidersGoogleDrive.backupProviderGoogleDriveKeyFolderID);
+  await this.validateAndClick("//button[normalize-space(text())='Save Backup Options']");
+  await this.page.waitForLoadState('domcontentloaded');
+  await this.assertionValidate("//h3[normalize-space(text())='Backup settings saved.']");
+  await this.assertionValidate("//div[normalize-space(text())='Backup profile installed successfully.']");
+};
+
+async deleteBackupGoogleDrive(currentTeamId: string) {
+  await this.page.goto(Urls.baseUrl + `/teams/${currentTeamId}/backups`, { waitUntil: 'networkidle' });
+  await this.page.waitForLoadState('domcontentloaded');
+  await this.validateAndClick(`//div[text()="${BackupProvidersGoogleDrive.backupProviderGoogleDriveName}"]//..//..//..//td[contains(@class,'px-6 py-4')]//button`);
+  await this.page.waitForLoadState('domcontentloaded');
+  await this.validateAndClick("//div[contains(@class,'px-5 py-4')]//button[1]");
+};
 
 }
