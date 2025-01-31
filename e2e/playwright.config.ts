@@ -74,7 +74,6 @@ const config: PlaywrightTestConfig = {
                 'tests/transferSite.spec.ts',
                 'tests/emailSetup.spec.ts',
                 'tests/login.spec.ts',
-                'tests/sitesSettings.spec.ts',
             ]
         },
         {
