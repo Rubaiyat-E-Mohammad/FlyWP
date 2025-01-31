@@ -71,7 +71,7 @@ jobs:
       - name: Run Playwright tests
         id: e2e-test
         run: |
-          npm run test:sharded
+          npm run test:shard4
     
       - name : move all blob reports to a directory
         if: always()
