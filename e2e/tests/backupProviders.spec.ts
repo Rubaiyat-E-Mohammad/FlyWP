@@ -180,48 +180,6 @@ test.describe("BackupProviders : Cloudflare R2", () => {
   });
 });
 
-test.describe.skip("BackupProviders : Google Drive", () => {
-  /* ------------------------ Secure-Data ------------------------ */
-  let backupProviderGoogleDriveName: string; // Set server name from Secure Data
-
-  /* ------------------------ Backup Providers ------------------------ */
-  test("[BKP015] addBackupProvider: Google Drive", { tag: ['@BackupProvider', '@GoogleDrive'] }, async () => {
-    const backupProvidersPage = new BackupProvidersPage(page);
-    backupProviderGoogleDriveName = await backupProvidersPage.addBackupProviderGoogleDrive(currentTeamId);
-    console.log(backupProviderGoogleDriveName);
-  });
-
-  test("[BKP016] validateBackupProvider: Google Drive", { tag: ['@BackupProvider', '@GoogleDrive'] }, async () => {
-    const backupProvidersPage = new BackupProvidersPage(page);
-    await backupProvidersPage.validateBackupProvider(backupProviderGoogleDriveName, currentTeamId);
-  });
-
-  test("[BKP017] connectBackupProvider - Perma-Site: Google Drive", { tag: ['@BackupProvider', '@GoogleDrive'] }, async () => {
-    const backupProvidersPage = new BackupProvidersPage(page);
-    await backupProvidersPage.connectBackupProviderGoogleDrive(backupProviderGoogleDriveName, savedData.olsSiteId);
-  })
-
-  test("[BKP018] createManualBackup - Perma-Site: Google Drive", { tag: ['@BackupProvider', '@GoogleDrive'] }, async () => {
-    const backupProvidersPage = new BackupProvidersPage(page);
-    await backupProvidersPage.createManualBackup(savedData.olsSiteId);
-  });
-
-  test("[BKP019] validateManualBackup - Perma-Site: Google Drive", { tag: ['@BackupProvider', '@GoogleDrive'] }, async () => {
-    const backupProvidersPage = new BackupProvidersPage(page);
-    await backupProvidersPage.validateManualBackup(savedData.olsSiteId);
-  });
-
-  test("[BKP020] deleteManualBackup - Perma-Site: Google Drive", { tag: ['@BackupProvider', '@GoogleDrive'] }, async () => {
-    const backupProvidersPage = new BackupProvidersPage(page);
-    await backupProvidersPage.deleteManualBackup(savedData.olsSiteId);
-  });
-
-  test("[BKP022] deleteBackupProvider: Google Drive", { tag: ['@BackupProvider', '@GoogleDrive'] }, async () => {
-    const backupProvidersPage = new BackupProvidersPage(page);
-    await backupProvidersPage.deleteBackupGoogleDrive(currentTeamId);
-  });
-});
-
 
 // AfterAll hook to clear cookies after all tests have completed
 test.afterAll(async () => {

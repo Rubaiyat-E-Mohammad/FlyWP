@@ -1,7 +1,6 @@
 import { config as dotenvConfig } from "dotenv";
 dotenvConfig(); // Load environment variables from .env file
 import { faker } from "@faker-js/faker";
-import * as fs from "fs";
 
 //ServerProviders data
 //Digital Ocean
@@ -86,17 +85,6 @@ let BackupProvidersCloudflareR2: {
   backupProviderCloudflareR2Bucket: "qa-bucket-la",
 };
 
-//Google Drive
-let BackupProvidersGoogleDrive: {
-  backupProviderGoogleDriveName: string;
-  backupProviderServiceAccountJson: string;
-  backupProviderGoogleDriveKeyFolderID: string;
-} = {
-  backupProviderGoogleDriveName: `custom-googleDrive-qa`,
-  backupProviderServiceAccountJson: fs.readFileSync('e2e/utils/google-drive-backup-provider.json', 'utf8'),
-  backupProviderGoogleDriveKeyFolderID: "1rBHL9zZhwY10BIdXDWI7JyCDhhtWA_07",
-};
-
 let permaServerSite: { 
   server1: string;
   server2:string;
@@ -138,7 +126,6 @@ export {
   ServerProvidersHetzner,
   BackupProvidersCustomS3,
   BackupProvidersCloudflareR2,
-  BackupProvidersGoogleDrive,
   permaServerSite,
   emailCredentials,
 };
