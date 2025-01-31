@@ -78,6 +78,12 @@ const config: PlaywrightTestConfig = {
             ]
         },
         {
+            name: 'shard4',
+            testMatch: [
+                'tests/sitesSettings.spec.ts',
+            ]
+        },
+        {
             name: 'postShard',
             testMatch: [
                 'tests/serverProviders.spec.ts',

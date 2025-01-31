@@ -11,11 +11,12 @@
     "test:shard1": "npm run test:preShard && npx playwright test --project=shard1 && npm run test:postShard",
     "test:shard2": "npm run test:preShard && npx playwright test --project=shard2 && npm run test:postShard",
     "test:shard3": "npm run test:preShard && npx playwright test --project=shard3 && npm run test:postShard",
+    "test:shard4": "npm run test:preShard && npx playwright test --project=shard4 && npm run test:postShard",
     "test:postShard": "npx playwright test --project=postShard",
     "test:coverage": "npx playwright test --project=coverage --reporter=null",
     "merge-reports": "npx playwright merge-reports --reporter html ./blob-report",
     "generate-report": "npm run merge-reports && npx playwright show-report ./playwright-report",
-    "test:sharded": "npm run test:preShard && npx playwright test --project=shard1 && npx playwright test --project=shard2 && npx playwright test --project=shard3 && npm run test:postShard"
+    "test:sharded": "npm run test:preShard && npx playwright test --project=shard1 && npx playwright test --project=shard2 && npx playwright test --project=shard3 && npx playwright test --project=shard4 && npm run test:postShard"
   },
   "keywords": [],
   "author": "",
