@@ -82,7 +82,7 @@ let BackupProvidersCloudflareR2: {
   backupProviderCloudflareR2AccessKey: "511c3d6df02fce5ee38dfa23fe642f09",
   backupProviderCloudflareR2SecretAccessKey:
     "9c0c204829bca94c244942f4dd23425d4b6d02c437afa14998566fbb9fbf58de",
-  backupProviderCloudflareR2Bucket: "qa-bucket-la",
+  backupProviderCloudflareR2Bucket: "qa-bucket-frankfurt",
 };
 
 let permaServerSite: { 
