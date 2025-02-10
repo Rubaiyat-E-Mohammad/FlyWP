@@ -75,7 +75,7 @@ export class ServerProvidersPage extends BasePage {
     await this.validateAndClick("//h4[normalize-space(text())='Vultr']");
 
 
-    await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderVultrName);
+    await this.validateAndFillStrings('//input[@placeholder="Acme Inc."]', serverProviderVultrName)
     await this.page.waitForTimeout(2000);
     await this.validateAndFillStrings('//input[@type="password"]', serverProviderVultrApiToken);
     await this.page.waitForTimeout(5000);

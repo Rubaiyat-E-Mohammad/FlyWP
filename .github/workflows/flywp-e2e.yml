@@ -29,7 +29,7 @@ env:
 jobs:
   run_tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 50
     defaults:
       run:
         working-directory: e2e 
@@ -58,7 +58,7 @@ jobs:
         with:
             path: |
                 ~/.cache/ms-playwright
-            key: ${{ runner.os }}-playwright-${{ secrets.PLAYWRIGHT_VERSION }}
+            key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
             restore-keys: |
                 ${{ runner.os }}-playwright-
 
@@ -147,6 +147,6 @@ jobs:
           body: |
             ${{ github.job }} job in workflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}.
             Test was conducted on FlyWP Staging. See the attached report for details.
-          to: tons2468@gmail.com, nurul.ratul@wedevs.com ,saif@wedevs.com,farazi@wedevs.com,
+          to: tons2468@gmail.com
           from: rubaiyat.mohammad@wedevs.com
           attachments: ./e2e/playwright-report/index.html

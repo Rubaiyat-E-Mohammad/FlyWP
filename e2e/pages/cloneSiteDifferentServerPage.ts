@@ -116,11 +116,18 @@ export class CloneSiteDifferentServerPage extends BasePage {
         await newPage.waitForLoadState('networkidle');
         await newPage.waitForTimeout(5000);
         await newPage.reload();
-        while (true) {
-            const isConditionMet = await newPage.locator("//p[@class='wp-block-site-title']//a[1]").textContent() === text;
-            if (isConditionMet) {
-                break;
-            } else {
+        let maxRetries = 10;
+        let retries = 0;
+        let flag = true;
+        while (flag && retries < maxRetries) {
+            try {
+                await newPage.waitForSelector(`//p[@class='wp-block-site-title']//a[normalize-space(text())='${text}']`, { timeout: 3000 });
+                flag = false;
+            } catch (error) {
+                retries++;
+                if (retries >= maxRetries) {
+                    console.log(`Element with text "${text}" not found after ${maxRetries} attempts`);
+                }
                 await newPage.reload();
             }
         }

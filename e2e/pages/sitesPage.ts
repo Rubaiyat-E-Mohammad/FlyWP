@@ -302,6 +302,15 @@ export class SitesPage extends BasePage {
    * @description: 
    *    Sceanrios covering test steps for Sites @Settings : 
    *    
+   * @scenario - 1: 
+   *    1. Change PHP Settings for a Site
+   *    2. Validate PHP Settings for a Site
+   * 
+   * @scenario - 2: 
+   *    1. Change PhpMemoryLimit And ExecutionTime
+   *    2. Validate PhpMemoryLimit And ExecutionTime
+   * 
+   * 
    */
 
 
@@ -334,7 +343,6 @@ export class SitesPage extends BasePage {
     }
 
     const toastMessage = this.page.locator('//div[normalize-space(text())="Changes has been updated in the server."]'); // Update with the actual selector for your Toast
-    // await toastMessage.waitFor({ timeout: 30000 });
     try {
       await toastMessage.waitFor({ timeout: 20000 });
     } catch (error) {

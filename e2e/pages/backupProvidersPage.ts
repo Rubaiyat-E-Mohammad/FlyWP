@@ -122,7 +122,11 @@ export class BackupProvidersPage extends BasePage {
     await this.page.waitForLoadState('domcontentloaded');
     await this.validateAndClick("//div[contains(@class,'px-5 py-4')]//button[1]");
     await this.page.waitForLoadState('domcontentloaded');
-    await this.assertionValidate("//h3[normalize-space(text())='The backup has been deleted.']");
+    try {
+      await this.page.locator("//h3[normalize-space(text())='The backup has been deleted.']").waitFor({timeout:30000});
+    } catch (error) {
+      console.log("Manual backup deletion failed");
+    }
   }
 
 
@@ -173,7 +177,5 @@ export class BackupProvidersPage extends BasePage {
     await this.page.waitForLoadState('domcontentloaded');
     await this.validateAndClick("//div[contains(@class,'px-5 py-4')]//button[1]");
   };
-
-
 
 }

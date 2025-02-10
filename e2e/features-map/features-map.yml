@@ -364,19 +364,3 @@
     "[SSPS0012] validateSite: Max Input Time": true
     "[SSPS0011] changePHPSettings: Max Input Vars": true
     "[SSPS0012] validateSite: Max Input Vars": true
-
-    # Site : OpenLitespeed(Ols)
-    "[SSPS0013] changePHPSettings: PHP version ": false
-    "[SSPS0014] validateSite: PHP version": false
-    "[SSPS0015] changePHPSettings: PHP Memory Limit": false
-    "[SSPS0016] validateSite: PHP Memory Limit": false
-    "[SSPS0017] changePHPSettings: Max Execution Time": false
-    "[SSPS0018] validateSite: Max Execution Time": false
-    "[SSPS0019] changePHPSettings: Max File Upload Limit": false
-    "[SSPS0020] validateSite: Max File Upload Limit": false
-    "[SSPS0021] changePHPSettings: Max File Upload Size": false
-    "[SSPS0022] validateSite: Max File Upload Size": false
-    "[SSPS0023] changePHPSettings: Max Input Time": false
-    "[SSPS0024] validateSite: Max Input Time": false
-    "[SSPS0025] changePHPSettings: Max Input Vars": false
-    "[SSPS0026] validateSite: Max Input Vars": false
