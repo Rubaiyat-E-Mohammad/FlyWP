@@ -60,7 +60,7 @@ let BackupProvidersCustomS3: {
   backupProviderCustomS3Bucket: string;
   backupProviderCustomS3Region: string;
 } = {
-  backupProviderCustomS3Name: `custom-s3-qa`,
+  backupProviderCustomS3Name: `custom-s3-qa-${faker.number.int(100)}`,
   backupProviderCustomS3Region: process.env.S3_REGION || "de-fra",
   backupProviderEndpoint:
     process.env.S3_ENDPOINT || "https://p4r6.fra.idrivee2-24.com",
@@ -77,7 +77,7 @@ let BackupProvidersCloudflareR2: {
   backupProviderCloudflareR2SecretAccessKey: string;
   backupProviderCloudflareR2Bucket: string;
 } = {
-  backupProviderCloudflareR2Name: `custom-r2-qa`,
+  backupProviderCloudflareR2Name: `custom-r2-qa-${faker.number.int(100)}`,
   backupProviderAccountId: "55dc0a2b467d8e1d6eb3822ad43b5e4d",
   backupProviderCloudflareR2AccessKey: "511c3d6df02fce5ee38dfa23fe642f09",
   backupProviderCloudflareR2SecretAccessKey:
