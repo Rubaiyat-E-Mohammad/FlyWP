@@ -440,7 +440,7 @@ export class ServersPage extends BasePage {
       const statusData = await statusResponse.json();
 
       console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}`);
-      if (statusData.status === 'ready') {w
+      if (statusData.status === 'ready') {
         console.log("Server provisioning complete");
         break;
       };
