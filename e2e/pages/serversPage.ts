@@ -76,9 +76,8 @@ export class ServersPage extends BasePage {
       const statusResponse = await this.page.request.get(`${Urls.baseUrl}/servers/${serverId}/provision-status`);
       const statusData = await statusResponse.json();
 
-      console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}, Step = ${statusData.step}`);
-
-      if (statusData.status === 'success' || statusData.step === 9) {
+      console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}`);
+      if (statusData.status === 'ready') {
         console.log("Server provisioning complete");
         break;
       }
@@ -211,9 +210,8 @@ export class ServersPage extends BasePage {
       const statusResponse = await this.page.request.get(`${Urls.baseUrl}/servers/${serverId}/provision-status`);
       const statusData = await statusResponse.json();
 
-      console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}, Step = ${statusData.step}`);
-
-      if (statusData.status === 'success' || statusData.step === 9) {
+      console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}`);
+      if (statusData.status === 'ready') {
         console.log("Server provisioning complete");
         break;
       };
@@ -339,9 +337,8 @@ export class ServersPage extends BasePage {
       const statusResponse = await this.page.request.get(`${Urls.baseUrl}/servers/${serverId}/provision-status`);
       const statusData = await statusResponse.json();
 
-      console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}, Step = ${statusData.step}`);
-
-      if (statusData.status === 'success' || statusData.step === 9) {
+      console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}`);
+      if (statusData.status === 'ready') {
         console.log("Server provisioning complete");
         break;
       };
@@ -442,9 +439,8 @@ export class ServersPage extends BasePage {
       const statusResponse = await this.page.request.get(`${Urls.baseUrl}/servers/${serverId}/provision-status`);
       const statusData = await statusResponse.json();
 
-      console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}, Step = ${statusData.step}`);
-
-      if (statusData.status === 'success' || statusData.step === 9) {
+      console.log(`Polling Attempt ${i + 1}: Status = ${statusData.status}`);
+      if (statusData.status === 'ready') {w
         console.log("Server provisioning complete");
         break;
       };
